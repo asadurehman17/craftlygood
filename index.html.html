@@ -1,0 +1,2190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Craftly Goods | Bespoke Artisan Woodcraft & Furniture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --hero-bg: radial-gradient(circle at 50% 45%, #43281c 0%, #170d08 100%);
+      --text-main: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.7);
+      --border-hero: rgba(255, 255, 255, 0.15);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0f1013;
+      color: #1a1a1a;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      width: 100%;
+    }
+
+    /* Fixed Sticky Navigation */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      transition: all 0.35s ease;
+      padding: 16px 0;
+    }
+
+    header.scrolled {
+      background: rgba(18, 18, 22, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      background: #ffffff;
+      color: #0f1013;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .brand-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .nav-link {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.75);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 6px 0;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #ffffff;
+      border-radius: 2px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .currency-switch {
+      display: flex;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      overflow: hidden;
+      padding: 2px;
+    }
+
+    .curr-btn {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.7);
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 999px;
+      transition: all 0.2s;
+    }
+
+    .curr-btn.active {
+      background: #ffffff;
+      color: #0f1013;
+    }
+
+    /* Dynamic Showcase Hero Stage */
+    .hero-stage {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      background: var(--hero-bg);
+      transition: background 0.85s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 110px 20px 50px;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      width: 100%;
+      max-width: 1320px;
+      display: grid;
+      grid-template-columns: 1.1fr 1.6fr 0.9fr;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      gap: 20px;
+    }
+
+    .hero-left {
+      color: #ffffff;
+    }
+
+    .hero-left h1 {
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    .hero-left p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+      max-width: 340px;
+      transition: opacity 0.3s ease;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #ffffff;
+      color: #121316;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+    }
+
+    .social-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 35px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .hero-center {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-img-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-product-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.65));
+      animation: floatMotion 5s ease-in-out infinite;
+      transition: transform 0.5s var(--ease), opacity 0.4s ease;
+      border-radius: 20px;
+    }
+
+    @keyframes floatMotion {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(0.4deg); }
+    }
+
+    .ground-shadow {
+      position: absolute;
+      bottom: 10px;
+      width: 260px;
+      height: 24px;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.65) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .center-nav-controls {
+      display: flex;
+      gap: 140px;
+      margin-top: 10px;
+      z-index: 5;
+    }
+
+    .arrow-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #ffffff;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .arrow-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.08);
+    }
+
+    .center-slogan {
+      margin-top: 14px;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.85);
+      letter-spacing: 0.04em;
+    }
+
+    .hero-right {
+      color: #ffffff;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .price-group {
+      margin-bottom: 20px;
+    }
+
+    .sale-price {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .old-price {
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.45);
+      text-decoration: line-through;
+      margin-top: 2px;
+    }
+
+    .size-selector-wrap {
+      margin-bottom: 25px;
+      width: 100%;
+    }
+
+    .size-label {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .size-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: flex-end;
+      max-width: 300px;
+    }
+
+    .size-pill {
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #ffffff;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .size-pill.active, .size-pill:hover {
+      background: #ffffff;
+      color: #121316;
+      border-color: #ffffff;
+    }
+
+    .next-preview-box {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 8px;
+      width: 68px;
+      height: 68px;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .next-preview-box:hover {
+      transform: scale(1.05);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .next-preview-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    /* Below Fold Catalog Container */
+    .main-body {
+      background: #fafaf9;
+      padding: 70px 0 100px;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .catalog-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .view-title-wrap {
+      margin-bottom: 24px;
+    }
+
+    .view-title-wrap h2 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+    }
+
+    .view-title-wrap p {
+      font-size: 14px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    .catalog-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: #18181b;
+      border-color: #18181b;
+      color: #fff;
+    }
+
+    .search-box {
+      position: relative;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 10px 16px 10px 38px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      font-size: 13px;
+      outline: none;
+      background: #fff;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    /* Products Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .item-card {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+
+    .item-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.06);
+    }
+
+    /* In-Card Carousel */
+    .item-carousel {
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+      background: #f1f5f9;
+      overflow: hidden;
+    }
+
+    .carousel-track {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1);
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(18, 18, 22, 0.7);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      font-size: 14px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      z-index: 10;
+      opacity: 0;
+      transition: opacity 0.2s ease, background 0.2s ease;
+    }
+
+    .item-card:hover .card-arrow {
+      opacity: 1;
+    }
+
+    .card-arrow:hover {
+      background: rgba(18, 18, 22, 0.95);
+    }
+
+    .card-arrow.prev {
+      left: 8px;
+    }
+
+    .card-arrow.next {
+      right: 8px;
+    }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 4px;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      padding: 3px 6px;
+      border-radius: 999px;
+    }
+
+    .carousel-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .carousel-dot.active {
+      background: #ffffff;
+      transform: scale(1.2);
+    }
+
+    .photo-count-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(18, 18, 22, 0.65);
+      backdrop-filter: blur(8px);
+      color: #ffffff;
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 5;
+    }
+
+    .item-card-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .item-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .item-category {
+      font-size: 10.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #94a3b8;
+    }
+
+    .item-price-tag {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .item-title {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.35;
+      color: #1e293b;
+      margin-bottom: 10px;
+      flex: 1;
+      cursor: pointer;
+    }
+
+    .item-title:hover {
+      color: #2563eb;
+    }
+
+    .variant-chips-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+
+    .variant-chip {
+      font-size: 10.5px;
+      color: #475569;
+      background: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 500;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .item-action-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      gap: 8px;
+    }
+
+    .item-action {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .card-whatsapp-btn {
+      background: #25d366;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+      border: none;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .card-whatsapp-btn:hover {
+      background: #20ba5a;
+      transform: translateY(-1px);
+    }
+
+    /* Modal Styling */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      display: none;
+      place-items: center;
+      padding: 16px;
+    }
+
+    .modal-backdrop.open {
+      display: grid;
+    }
+
+    .modal-content {
+      background: #ffffff;
+      border-radius: 20px;
+      max-width: 840px;
+      width: 100%;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      position: relative;
+      box-shadow: 0 35px 70px rgba(0, 0, 0, 0.35);
+      max-height: 90vh;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(0, 0, 0, 0.05);
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      display: grid;
+      place-items: center;
+      z-index: 10;
+      transition: background 0.2s;
+    }
+
+    .modal-close:hover {
+      background: rgba(0, 0, 0, 0.12);
+    }
+
+    .modal-gallery {
+      background: #f8fafc;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .modal-main-img-box {
+      width: 100%;
+      height: 300px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .modal-main-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal-thumbs-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .modal-thumb {
+      width: 52px;
+      height: 52px;
+      min-width: 52px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      cursor: pointer;
+      background: #ffffff;
+      transition: border-color 0.2s;
+    }
+
+    .modal-thumb.active {
+      border-color: #0f172a;
+    }
+
+    .modal-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-details {
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: auto;
+    }
+
+    .modal-details span.badge {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #94a3b8;
+      margin-bottom: 6px;
+    }
+
+    .modal-details h3 {
+      font-size: 19px;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .modal-price-display {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 12px;
+    }
+
+    .modal-details p {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    .variant-group-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #1e293b;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    .modal-variant-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .modal-v-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid #cbd5e1;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #334155;
+      background: #ffffff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .modal-v-pill.active, .modal-v-pill:hover {
+      background: #0f172a;
+      border-color: #0f172a;
+      color: #ffffff;
+    }
+
+    .modal-actions-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .modal-btn {
+      background: #0f172a;
+      color: #fff;
+      text-align: center;
+      padding: 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+      display: block;
+      transition: background 0.2s;
+    }
+
+    .modal-btn:hover {
+      background: #27272a;
+    }
+
+    .whatsapp-buy-btn {
+      background: #25d366;
+      color: #fff;
+      text-align: center;
+      padding: 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.2s, transform 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .whatsapp-buy-btn:hover {
+      background: #20ba5a;
+      transform: translateY(-1px);
+    }
+
+    /* Strict Mobile Responsiveness Adjustments */
+    @media (max-width: 990px) {
+      .nav-container {
+        padding: 0 16px;
+      }
+      
+      nav ul {
+        gap: 12px;
+      }
+
+      .nav-link {
+        font-size: 11.5px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 24px;
+        padding-top: 10px;
+      }
+
+      .hero-left h1 {
+        font-size: 32px;
+      }
+
+      .hero-left p {
+        margin: 0 auto 20px;
+        font-size: 13.5px;
+      }
+
+      .social-row {
+        justify-content: center;
+        margin-top: 20px;
+        gap: 10px;
+      }
+
+      .hero-right {
+        align-items: center;
+        text-align: center;
+      }
+
+      .size-pills {
+        justify-content: center;
+      }
+
+      .center-nav-controls {
+        gap: 100px;
+      }
+
+      .hero-center {
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .hero-img-wrap {
+        width: 280px;
+        height: 280px;
+        margin: 0 auto;
+      }
+
+      .ground-shadow {
+        width: 200px;
+      }
+
+      .catalog-container {
+        padding: 0 16px;
+      }
+
+      .catalog-header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-box {
+        max-width: 100%;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .modal-backdrop {
+        padding: 10px;
+      }
+
+      .modal-content {
+        grid-template-columns: 1fr;
+        max-height: 92vh;
+      }
+
+      .modal-main-img-box {
+        height: 220px;
+      }
+
+      .modal-details {
+        padding: 20px 18px;
+        max-height: 50vh;
+      }
+
+      .card-arrow {
+        opacity: 0.85;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav ul {
+        display: none; /* Hide top header text links on very small mobile screens to prevent overflow, brand & currency switch remain */
+      }
+      .brand-title {
+        display: none; /* Keep icon only for mobile compact view */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation with Currency Switcher -->
+  <header id="siteHeader">
+    <div class="nav-container">
+      <div class="brand-group" onclick="navigateToCategory('all', true)">
+        <div class="brand-icon">C</div>
+        <div class="brand-title">Craftly Goods</div>
+      </div>
+      <nav>
+        <ul>
+          <li><button class="nav-link active" data-target="home" onclick="navigateToHome()">Home</button></li>
+          <li><button class="nav-link" data-target="Tables & Furniture" onclick="navigateToCategory('Tables & Furniture')">Tables</button></li>
+          <li><button class="nav-link" data-target="Artisan Boxes & Storage" onclick="navigateToCategory('Artisan Boxes & Storage')">Artisan Boxes</button></li>
+          <li><button class="nav-link" data-target="Dining & Decor" onclick="navigateToCategory('Dining & Decor')">Dining & Decor</button></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <div class="currency-switch">
+          <button class="curr-btn active" id="currUsd" onclick="setCurrency('USD')">USD $</button>
+          <button class="curr-btn" id="currPkr" onclick="setCurrency('PKR')">PKR ₨</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Dynamic Colorway Hero Showcase -->
+  <section class="hero-stage" id="heroStage">
+    <div class="hero-grid">
+
+      <!-- Left Narrative -->
+      <div class="hero-left">
+        <h1 id="heroTitle">Raw Nature.<br>Defined Style.</h1>
+        <p id="heroDesc">Discover solid live-edge centerpieces, handcrafted Naqshi heirlooms, and curated woodcraft for modern architectural living.</p>
+        <button class="hero-cta" onclick="navigateToCategory('all')">Explore Collection &rarr;</button>
+        <div class="social-row">
+          <span>Instagram</span>
+          <span>Facebook</span>
+          <span>Pinterest</span>
+          <span>Daraz Store</span>
+        </div>
+      </div>
+
+      <!-- Center Floating Showcase -->
+      <div class="hero-center">
+        <div class="hero-img-wrap">
+          <img src="" alt="Star Product" id="heroImg" class="hero-product-img" />
+          <div class="ground-shadow"></div>
+        </div>
+        <div class="center-nav-controls">
+          <button class="arrow-btn" id="prevBtn">&lsaquo;</button>
+          <button class="arrow-btn" id="nextBtn">&rsaquo;</button>
+        </div>
+        <div class="center-slogan">
+          Craft Better. Feel Better.
+        </div>
+      </div>
+
+      <!-- Right Options & Pricing -->
+      <div class="hero-right">
+        <div class="price-group">
+          <div class="sale-price" id="heroPrice">$68</div>
+          <div class="old-price" id="heroOldPrice">$88</div>
+        </div>
+        <div class="size-selector-wrap">
+          <div class="size-label">Select Available Variant</div>
+          <div class="size-pills" id="heroSizes"></div>
+        </div>
+        <div class="next-preview-box" id="nextPreview">
+          <img src="" alt="Next Thumbnail" id="nextThumbImg" />
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Category & Catalog Section -->
+  <div class="main-body" id="catalogSection">
+    <div class="catalog-container">
+      
+      <div class="view-title-wrap">
+        <h2 id="sectionTitle">All Masterpieces</h2>
+        <p id="sectionSubtitle">Showing complete collection of handcrafted wooden essentials with in-card gallery slider and custom pricing</p>
+      </div>
+
+      <div class="catalog-header">
+        <div class="filters">
+          <button class="filter-btn active" data-cat="all" onclick="filterCatalog('all')">All Pieces (<span id="totalItemsCount">56</span>)</button>
+          <button class="filter-btn" data-cat="Tables & Furniture" onclick="filterCatalog('Tables & Furniture')">Tables & Furniture</button>
+          <button class="filter-btn" data-cat="Artisan Boxes & Storage" onclick="filterCatalog('Artisan Boxes & Storage')">Artisan Boxes</button>
+          <button class="filter-btn" data-cat="Kitchen & Dining" onclick="filterCatalog('Kitchen & Dining')">Kitchen & Dining</button>
+          <button class="filter-btn" data-cat="Decor & Accents" onclick="filterCatalog('Decor & Accents')">Decor & Accents</button>
+        </div>
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Search craftly products..." />
+        </div>
+      </div>
+
+      <div class="products-grid" id="productsGrid"></div>
+    </div>
+  </div>
+
+  <!-- Quick View Modal with Multi-Picture Gallery & Variant Selection -->
+  <div class="modal-backdrop" id="productModal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">&times;</button>
+      
+      <div class="modal-gallery">
+        <div class="modal-main-img-box">
+          <img id="modalMainImg" src="" alt="Product Angle" />
+        </div>
+        <div class="modal-thumbs-row" id="modalThumbsRow"></div>
+      </div>
+
+      <div class="modal-details">
+        <div>
+          <span class="badge" id="modalCategory">Category</span>
+          <h3 id="modalTitle">Product Title</h3>
+          <div class="modal-price-display" id="modalPrice">$0</div>
+          <p id="modalDesc">Detailed description here</p>
+
+          <div class="variant-group-title">Available Variants from Daraz Store:</div>
+          <div class="modal-variant-pills" id="modalVariants"></div>
+        </div>
+
+        <div class="modal-actions-stack">
+          <a href="https://www.daraz.pk/shop/kvs4wp2b" target="_blank" class="modal-btn">Inquire Selected Variant on Daraz Store</a>
+          <a href="#" id="whatsappBuyBtn" target="_blank" class="whatsapp-buy-btn">
+            <span>💬</span> <span>Buy via WhatsApp Now</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let currentCurrency = 'USD';
+    const WHATSAPP_PHONE_NUMBER = "923276690066";
+
+    // Complete exact dataset parsed from the provided snippet
+    const catalog = [
+      {
+        "id": "item_1",
+        "title": "Wooden Hotpot",
+        "full": "Wooden Hotpot, 12-Inch Handcrafted Brass Hotpot with Insulated Steel Interior",
+        "cat": "Kitchen & Dining",
+        "usd": 62.5,
+        "pkr": 17500,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S3f46b00deb1945f790b5129041adddb3G.jpg", "https://pk-live-21.slatic.net/kf/S5c00e493842846e7a364498d011750e57.jpg", "https://pk-live-21.slatic.net/kf/S3c0a53b73bc94f2b894cb0ffba57213aC.jpg", "https://pk-live-21.slatic.net/kf/S331afdb6303a43d8bdf6ddef07c9adeaY.jpg", "https://pk-live-21.slatic.net/kf/S3e0ad6e6c8f54458b55bf94b5a55d977W.jpg", "https://static-01.daraz.pk/p/66f33daf2943e712e56df61f6ab874d1.jpg"],
+        "variants": ["12-Inch Handcrafted Brass Hotpot"]
+      },
+      {
+        "id": "item_2",
+        "title": "Cigarette Ash tray",
+        "full": "Tabletop Wooden Cigarette Ash tray",
+        "cat": "Decor & Accents",
+        "usd": 47.1,
+        "pkr": 13200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/Scd9307c8715042aaa4159eb0ce8d160ef.jpg", "https://pk-live-21.slatic.net/kf/Sdd2d8bd3b1174fd6b80b302becd9ac79d.jpg", "https://pk-live-21.slatic.net/kf/S8cf1ec4ebedf4030afbd71baf2b1c1a69.jpg"],
+        "variants": ["Small", "Medium", "Large"]
+      },
+      {
+        "id": "item_3",
+        "title": "Kitchen Spices Organizer Adjustable",
+        "full": "Kitchen Spices Organizer Adjustable Countertop Storage Shelf",
+        "cat": "Kitchen & Dining",
+        "usd": 54.3,
+        "pkr": 15200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S9a0d11bd4d1d4d4a8b416ef07edcb8c4k.jpg", "https://pk-live-21.slatic.net/kf/Sfb8f8041f0c64f91bb47c7940076520e0.jpg", "https://pk-live-21.slatic.net/kf/S2bfa209aa1ed431aa35d669129a010c9P.jpg", "https://pk-live-21.slatic.net/kf/S8c16a72155274a308d02ada040661157F.jpg"],
+        "variants": ["Any Color You Want"]
+      },
+      {
+        "id": "item_4",
+        "title": "Wooden Ash tray with stand",
+        "full": "Wooden Ash tray with standing stem",
+        "cat": "Decor & Accents",
+        "usd": 47.1,
+        "pkr": 13200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S6af4c4e2583c40ebae6417a97d24c498x.jpg", "https://pk-live-21.slatic.net/kf/S4fb5e4e37cd9471b91c07efe87be2259u.jpg", "https://pk-live-21.slatic.net/kf/S731c5b916366469680ddc856489a66f7U.jpg", "https://pk-live-21.slatic.net/kf/S72c80530d4d14d6eaf80dcd19ed1c0683.jpg"],
+        "variants": ["Wooden Ash Tray with Standing Stem"]
+      },
+      {
+        "id": "item_5",
+        "title": "Wooden Dry Fruit Box",
+        "full": "Wooden Dry Fruit Box, Multi-Compartment Serving Box",
+        "cat": "Artisan Boxes & Storage",
+        "usd": 55.4,
+        "pkr": 15500,
+        "imgs": ["https://pk-live-21.slatic.net/kf/Se16e81ca4edf4ec5a465cc9fb42e66760.jpg", "https://pk-live-21.slatic.net/kf/S92a166bf581a439a89dc970afcd744636.jpg", "https://pk-live-21.slatic.net/kf/S74a58539c1f840f6bbd4c3d00cc70d2aQ.jpg"],
+        "variants": ["Multi-Compartment Wooden Serving Box"]
+      },
+      {
+        "id": "item_6",
+        "title": "Handmade Crafted Dry Fruit Box",
+        "full": "Handmade Crafted Dry Fruit Box with Glass Cover",
+        "cat": "Artisan Boxes & Storage",
+        "usd": 55.4,
+        "pkr": 15500,
+        "imgs": ["https://pk-live-21.slatic.net/kf/Sbbf54e92570a4a9fb5adf52cb04ef64du.jpg", "https://pk-live-21.slatic.net/kf/S3a016f4ef6ea46e088a29a0073bc5b8bh.jpg", "https://pk-live-21.slatic.net/kf/S4237f3dae911478191ec4c27473a21e4x.jpg", "https://pk-live-21.slatic.net/kf/S0352cb202f564beaaebc76b911ef6285x.jpg", "https://pk-live-21.slatic.net/kf/S8f94119f395b4528929944bc3efc7ef2f.jpg"],
+        "variants": ["Glass Cover Multi-Compartment"]
+      },
+      {
+        "id": "item_7",
+        "title": "Wooden Live edge Table",
+        "full": "Wooden Live edge Coffee Table / Accent Table",
+        "cat": "Tables & Furniture",
+        "usd": 114.3,
+        "pkr": 32000,
+        "imgs": ["https://pk-live-21.slatic.net/kf/Sb1ea67e9910c4e62b250f989105d0f167.jpg", "https://pk-live-21.slatic.net/kf/S58e00fbd090343b79892831fc5097dbbO.jpg", "https://pk-live-21.slatic.net/kf/Sd11aa9098c474d2da601ff7a312d8a43w.jpg", "https://pk-live-21.slatic.net/kf/S4414ffbbdd55490ab8256a42a00067dcA.jpg"],
+        "variants": ["Natural Cut Live Edge Slab", "Custom Solid Wood Slab"]
+      },
+      {
+        "id": "item_8",
+        "title": "Handmade Multicolor Ceramic Jar with Lid",
+        "full": "Handmade Multicolor Ceramic Jar with Lid",
+        "cat": "Decor & Accents",
+        "usd": 52.9,
+        "pkr": 14800,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S1425cb67415042d2ae4bfa5074570e44L.jpg", "https://pk-live-21.slatic.net/kf/S21f06f52554e4ae69085ec351684cff99.jpg"],
+        "variants": ["Multicolor Hand-Painted", "Single Ceramic-Wood Lid"]
+      },
+      {
+        "id": "item_9",
+        "title": "Handmade Wooden Bangle Stand",
+        "full": "Handmade Wooden Bangle Stand Jewelry Organizer",
+        "cat": "Artisan Boxes & Storage",
+        "usd": 47.1,
+        "pkr": 13200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S5b30a5722ed3472e8b6225abcd14ae603.jpg", "https://pk-live-21.slatic.net/kf/Sbf36307671154562b3ea662ff8b525ccG.jpg", "https://pk-live-21.slatic.net/kf/Sfa66c3c5443c4424be3f215cc3042a98j.jpg", "https://static-01.daraz.pk/p/561b8fbfbf941031b7ad78170258cb2e.jpg", "https://pk-live-21.slatic.net/kf/S5b30a5722ed3472e8b6225abcd14ae603.jpg"],
+        "variants": ["4 Arms", "6 Arms", "8 Arms"]
+      },
+      {
+        "id": "item_10",
+        "title": "Wooden Handmade Bangle Rack Stand",
+        "full": "Wooden Handmade Bangle Rack Stand",
+        "cat": "Artisan Boxes & Storage",
+        "usd": 47.1,
+        "pkr": 13200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/Sb417e4554cf44219ae908a205bbcea55i.jpg", "https://pk-live-21.slatic.net/kf/S9196b607062d4e78a632ea51d95be5f7S.jpg", "https://pk-live-21.slatic.net/kf/S1b6196a0b411475e9dbd27cb224976c67.jpg", "https://pk-live-21.slatic.net/kf/Scefa6c043e0d4bbda8f399f6b49e29a8f.jpg", "https://pk-live-21.slatic.net/kf/S9e0da765275841dc8ec56c7003057e93H.jpg", "https://static-01.daraz.pk/p/23118ef8f86f7c9e0573bead9cf0aa04.jpg"],
+        "variants": ["4 Rod", "6 Rod", "8 Rod"]
+      },
+      {
+        "id": "item_11",
+        "title": "Decorative Candle Stand",
+        "full": "Decorative Candle Stand Holder Options",
+        "cat": "Decor & Accents",
+        "usd": 54.3,
+        "pkr": 15200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S7095d46088a44263809a9ecc14a43780q.jpg", "https://pk-live-21.slatic.net/kf/S9b2936b641744008a09607b0042d72ff9.jpg"],
+        "variants": ["Single Candle Holder", "2-Candles Stand", "3-Candle Stand", "5-Candle Stand"]
+      },
+      {
+        "id": "item_12",
+        "title": "Wooden CPU Stand / Computer Tower Base",
+        "full": "Wooden CPU Stand / Computer Tower Base",
+        "cat": "Tables & Furniture",
+        "usd": 57.1,
+        "pkr": 16000,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S8f81aff93d6b4cf19fc8719dc06bbf9f0.jpg", "https://pk-live-21.slatic.net/kf/S4c3a35ba534040a7bdfb8f9d3eb1a28ev.jpg", "https://pk-live-21.slatic.net/kf/S6bb9313dbfe041d8bce21d3f9f7ba3adR.jpg", "https://pk-live-21.slatic.net/kf/Sfc17e25f782343168b9d365f9037c802Z.jpg", "https://pk-live-21.slatic.net/kf/Se802613ba2424cf3889fc66657980287K.jpg"],
+        "variants": ["Ventilated Wooden PC Stand"]
+      },
+      {
+        "id": "item_13",
+        "title": "Wooden 3 Layer Cake Stand",
+        "full": "Wooden 3 Layer Cake Stand – Rustic Dessert Display Tray",
+        "cat": "Kitchen & Dining",
+        "usd": 54.3,
+        "pkr": 15200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S0e26323dee1844bc8de1bec55c09976dh.jpg", "https://pk-live-21.slatic.net/kf/S00920ab00ecb4810af7650d3e8159a55x.jpg"],
+        "variants": ["3-Layer Checkered", "Rustic style"]
+      },
+      {
+        "id": "item_14",
+        "title": "Wooden Bowl Set",
+        "full": "Wooden Bowl Set – 1 Large Bowl with 6 Small Bowls",
+        "cat": "Kitchen & Dining",
+        "usd": 54.3,
+        "pkr": 15200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/Sd81e84a7614f4964bd2e0e7a1017e3fad.jpg", "https://pk-live-21.slatic.net/kf/Sa97300051a42404e99b380114455f0d3a.jpg"],
+        "variants": ["Full 7-Piece Set (1 Large + 6 Small Bowls)"]
+      },
+      {
+        "id": "item_15",
+        "title": "Carved Round Wooden Table",
+        "full": "Carved Round Wooden Table – Handcrafted Accent Table",
+        "cat": "Tables & Furniture",
+        "usd": 91.1,
+        "pkr": 25500,
+        "imgs": ["https://pk-live-21.slatic.net/kf/Scabcb97dc12342288836241fba0f4732u.jpg", "https://pk-live-21.slatic.net/kf/Sce891c285cc746f09e8a17d95a6ba646B.jpg"],
+        "variants": ["Handcrafted Carved Accent Table"]
+      },
+      {
+        "id": "item_16",
+        "title": "Desktop Space Organizer Shelf",
+        "full": "Desktop Space Organizer Shelf – Expandable Wooden Rack",
+        "cat": "Tables & Furniture",
+        "usd": 57.1,
+        "pkr": 16000,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S1097d20219654e29a5f748972bb2e403m.jpg", "https://pk-live-21.slatic.net/kf/S5934f555a7a944b2978c9cb8c420784a8.jpg"],
+        "variants": ["Any Color You Want"]
+      },
+      {
+        "id": "item_17",
+        "title": "Decorative Wooden Dustbin / Basket",
+        "full": "Decorative Wooden Dustbin / Basket – Waste Bin",
+        "cat": "Decor & Accents",
+        "usd": 52.9,
+        "pkr": 14800,
+        "imgs": ["https://pk-live-21.slatic.net/kf/Sf0f8b27c9611449eb2da2d8863434774k.jpg", "https://pk-live-21.slatic.net/kf/S4f9e254e20f941dfb0e5b3837bf01794V.jpg"],
+        "variants": ["Carved Handcrafted Waste Bin", "Checkered Handcrafted Waste Bin"]
+      },
+      {
+        "id": "item_18",
+        "title": "Wooden Floating Wall Shelves",
+        "full": "Wooden Floating Wall Shelves – Modern Storage Rack",
+        "cat": "Tables & Furniture",
+        "usd": 57.1,
+        "pkr": 16000,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S75453117ad244f33923a6c91af391f2bQ.jpg", "https://pk-live-21.slatic.net/kf/S0ca17b7ec1d14fbda9b8473847a442968.jpg"],
+        "variants": ["Single", "Set of 2", "Set of 3"]
+      },
+      {
+        "id": "item_19",
+        "title": "Wooden Mobile Stand",
+        "full": "Wooden Mobile Stand – Adjustable Phone Holder",
+        "cat": "Decor & Accents",
+        "usd": 47.1,
+        "pkr": 13200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/Sfa0b8df046934f278a59df7d6d5975c9Z.jpg", "https://pk-live-21.slatic.net/kf/S1c3e0d2f68ad474797c214f2b34964a8O.jpg"],
+        "variants": ["Adjustable Wooden Phone Stand"]
+      },
+      {
+        "id": "item_20",
+        "title": "Premium Wall-Mounted Folding Laptop Desk",
+        "full": "Premium Wall-Mounted Folding Laptop Desk",
+        "cat": "Tables & Furniture",
+        "usd": 69.6,
+        "pkr": 19500,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S130b46abcfcb48a4931a9794e4aff2434.jpg", "https://pk-live-21.slatic.net/kf/Sc66f33e5e9f44b07aabf5129fc003509c.jpg"],
+        "variants": ["Any Color You Want"]
+      },
+      {
+        "id": "item_21",
+        "title": "Wooden Console Table",
+        "full": "Wooden Console Table | Entryway Table",
+        "cat": "Tables & Furniture",
+        "usd": 132.1,
+        "pkr": 37000,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S02b7388c264c4922a9601aa31c360e9b7.jpg", "https://pk-live-21.slatic.net/kf/S04dce555c3ad4f6cb431b6297c7de988c.jpg", "https://pk-live-21.slatic.net/kf/S918e8844fff04c0cae4de88a016396acb.jpg"],
+        "variants": ["4ft Console With Iron Legs", "4ft Console With Metal Legs"]
+      },
+      {
+        "id": "item_22",
+        "title": "Premium Handcrafted Wooden Tea Coaster Set with Stand",
+        "full": "Premium Handcrafted Wooden Tea Coaster Set with Stand",
+        "cat": "Kitchen & Dining",
+        "usd": 47.1,
+        "pkr": 13200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S0643facc58a34eb38577e115eb61abfcN.jpg", "https://pk-live-21.slatic.net/kf/S145f1ad5fc424deeb8fcc18034406da1B.jpg"],
+        "variants": ["Simple", "Flower Design"]
+      },
+      {
+        "id": "item_23",
+        "title": "Wooden Corner Desktop Table",
+        "full": "Wooden Corner Desktop Table | Study Corner Table",
+        "cat": "Tables & Furniture",
+        "usd": 98.2,
+        "pkr": 27500,
+        "imgs": ["https://pk-live-21.slatic.net/kf/Saec96bb9653c467aa9b35e266e4e072cH.jpg", "https://pk-live-21.slatic.net/kf/S586ba5e4b3d84d64bc7fd51275a3d056a.jpg", "https://pk-live-21.slatic.net/kf/S130b46abcfcb48a4931a9794e4aff2434.jpg", "https://pk-live-21.slatic.net/kf/S02b7388c264c4922a9601aa31c360e9b7.jpg"],
+        "variants": ["Standard Handcrafted Solid Wood"]
+      },
+      {
+        "id": "item_24",
+        "title": "Live Edge Wooden Center Table",
+        "full": "Live Edge Wooden Center Table | Natural Edge Coffee Table",
+        "cat": "Tables & Furniture",
+        "usd": 108.9,
+        "pkr": 30500,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S7fb14c52fa644cd4a05d9c3d703f546eE.jpg", "https://pk-live-21.slatic.net/kf/S2cac2a01c67541c9b7af5bf84684a6f25.jpg"],
+        "variants": ["Natural Cut Live Edge Slab", "Custom Solid Wood Slab"]
+      },
+      {
+        "id": "item_25",
+        "title": "Wooden Stool",
+        "full": "Wooden Stool | Multipurpose Sitting & Utility Stool",
+        "cat": "Tables & Furniture",
+        "usd": 50.7,
+        "pkr": 14200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/Se83404db362e490189fe44ae07ab125bx.jpg", "https://pk-live-21.slatic.net/kf/S56d5b69720874e8486e31619d65014e7E.jpg"],
+        "variants": ["Solid Wood Multipurpose Utility Stool"]
+      },
+      {
+        "id": "item_26",
+        "title": "Handcrafted Naqshi Coffee Table",
+        "full": "Handcrafted Naqshi Coffee Table | Wooden Carved Center Table",
+        "cat": "Tables & Furniture",
+        "usd": 117.9,
+        "pkr": 33000,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S356e730d2ccb45f4ac447c2265c16ed1h.jpg", "https://pk-live-21.slatic.net/kf/S6d6faa332afa464a93beb548e27d67dfL.jpg"],
+        "variants": ["In Different colors"]
+      },
+      {
+        "id": "item_27",
+        "title": "Wooden Spoon & Fork Set with Standing Holder",
+        "full": "Wooden Spoon & Fork Set with Standing Holder",
+        "cat": "Kitchen & Dining",
+        "usd": 47.1,
+        "pkr": 13200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/Sc762f02fd57a42ec98fc619c5726600bV.jpg", "https://pk-live-21.slatic.net/kf/S0991888c90ae4a9cbed47e601df458dfw.jpg"],
+        "variants": ["Wooden Utensil Set with Standing Holder"]
+      },
+      {
+        "id": "item_28",
+        "title": "Wooden Carved Jar",
+        "full": "Wooden Carved Jar | Decorative Storage Box",
+        "cat": "Artisan Boxes & Storage",
+        "usd": 54.3,
+        "pkr": 15200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/Seb1ab58e755e4b16a58ac894e1535d64x.jpg", "https://pk-live-21.slatic.net/kf/S92bd30c053124b4989a4778a66b887e3y.jpg"],
+        "variants": ["Standard Handcrafted Solid Wood"]
+      },
+      {
+        "id": "item_29",
+        "title": "Modern Wooden Carved Table Lamp",
+        "full": "Modern Wooden Carved Table Lamp | Bedside Lighting",
+        "cat": "Decor & Accents",
+        "usd": 56.4,
+        "pkr": 15800,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S69dd1fbca6c54473a77e726c16e55dbbU.jpg", "https://pk-live-21.slatic.net/kf/Se76e38a45a424096b26c94672ac4c699b.jpg"],
+        "variants": ["Modern Carved Bedside & Living Lamp"]
+      },
+      {
+        "id": "item_30",
+        "title": "Live Edge Wooden Console Table",
+        "full": "Live Edge Wooden Console Table | Natural Solid Wood Entryway",
+        "cat": "Tables & Furniture",
+        "usd": 132.1,
+        "pkr": 37000,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S918e8844fff04c0cae4de88a016396acb.jpg", "https://pk-live-21.slatic.net/kf/S22da93b3b1004b66b493e1db20b2392ee.jpg", "https://pk-live-21.slatic.net/kf/S02b7388c264c4922a9601aa31c360e9b7.jpg", "https://pk-live-21.slatic.net/kf/Se84bc99d7cd14742ad234b8d7bee3802k.jpg", "https://pk-live-21.slatic.net/kf/S7fb14c52fa644cd4a05d9c3d703f546eE.jpg"],
+        "variants": ["4ft Length Live Edge Console"]
+      },
+      {
+        "id": "item_31",
+        "title": "Live Edge Round Coffee Table",
+        "full": "Live Edge Round Coffee Table | Solid Wood Natural Edge Center Table",
+        "cat": "Tables & Furniture",
+        "usd": 105.4,
+        "pkr": 29500,
+        "imgs": ["https://pk-live-21.slatic.net/kf/Se84bc99d7cd14742ad234b8d7bee3802k.jpg", "https://pk-live-21.slatic.net/kf/S211af06e96dc4befb4d236146652a17cg.jpg"],
+        "variants": ["Natural Cut Live Edge Slab", "Custom Solid Wood Slab"]
+      },
+      {
+        "id": "item_32",
+        "title": "Naqshi Portable Wooden Jewelry Box",
+        "full": "Naqshi Portable Wooden Jewelry Box | Handcrafted Storage Case",
+        "cat": "Artisan Boxes & Storage",
+        "usd": 54.3,
+        "pkr": 15200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S178b5d117f044b9e861a2d49c95a3a0bA.jpg", "https://pk-live-21.slatic.net/kf/S12762227b1314740806287f929fe121aZ.jpg"],
+        "variants": ["Handcrafted Carved Velvet Casing"]
+      },
+      {
+        "id": "item_33",
+        "title": "Modern Wooden Side Table",
+        "full": "Modern Wooden Side Table | Bed & Sofa Side Table",
+        "cat": "Tables & Furniture",
+        "usd": 66.1,
+        "pkr": 18500,
+        "imgs": ["https://pk-live-21.slatic.net/kf/Sc87cc70f82f04542b9aa70755d7e5678E.jpg", "https://pk-live-21.slatic.net/kf/S83a86220b6194e90abd1e803b6863fddo.jpg"],
+        "variants": ["Natural Wood Top / Black Frame"]
+      },
+      {
+        "id": "item_34",
+        "title": "Modern Side Table with Wooden Top & Iron Frame",
+        "full": "Modern Side Table with Wooden Top & Iron Frame",
+        "cat": "Tables & Furniture",
+        "usd": 66.1,
+        "pkr": 18500,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S1b2ef13c3cd245d6abfa5dd33d00ba2bB.jpg", "https://pk-live-21.slatic.net/kf/S789519351282415aac474fcf6fdf1853I.jpg"],
+        "variants": ["Natural Wood Top / Black Frame"]
+      },
+      {
+        "id": "item_35",
+        "title": "Premium Handcrafted Wooden Toy Furniture Set",
+        "full": "Premium Handcrafted Wooden Toy Furniture Set – 7 Piece Dollhouse Collection",
+        "cat": "Decor & Accents",
+        "usd": 52.9,
+        "pkr": 14800,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S9b6a59d2793e4f3ea47b106f54374237k.jpg", "https://pk-live-21.slatic.net/kf/S84d042cdc9ee4a749043a9ae707c2e0a4.jpg"],
+        "variants": ["7-Piece Miniature Dollhouse Set"]
+      },
+      {
+        "id": "item_36",
+        "title": "Round Step Stool",
+        "full": "Round Step Stool - Anti-Slip Multipurpose Stool",
+        "cat": "Tables & Furniture",
+        "usd": 50.7,
+        "pkr": 14200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S2246009df37543cebe1ea854174451bft.jpg", "https://pk-live-21.slatic.net/kf/S12df9ac4be3f40c697fa28cde0c99344U.jpg"],
+        "variants": ["Anti-Slip Round Step Stool"]
+      },
+      {
+        "id": "item_37",
+        "title": "Handcrafted Wooden Tea Coaster Set with Holder",
+        "full": "Handcrafted Wooden Tea Coaster Set with Holder",
+        "cat": "Kitchen & Dining",
+        "usd": 47.1,
+        "pkr": 13200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S61e820f409fe4e7ea8a807bed8678a37C.jpg", "https://pk-live-21.slatic.net/kf/Sd3adec1260fe489cb5cd0866584af705i.jpg", "https://pk-live-21.slatic.net/kf/S0643facc58a34eb38577e115eb61abfcN.jpg"],
+        "variants": ["Minimalist Simple", "Traditional Hand-Carved", "Luxury Brass Work"]
+      },
+      {
+        "id": "item_38",
+        "title": "Handcrafted Wooden Bangle Stand & Bracelet Organizer",
+        "full": "Handcrafted Wooden Bangle Stand & Bracelet Organizer",
+        "cat": "Artisan Boxes & Storage",
+        "usd": 47.1,
+        "pkr": 13200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S3d7af5f8fc25474a8312316a6c990710D.jpg", "https://pk-live-21.slatic.net/kf/Sd7861c02d1584bfc8292e3790a84b0ebq.jpg", "https://pk-live-21.slatic.net/kf/S5b30a5722ed3472e8b6225abcd14ae603.jpg"],
+        "variants": ["Handmade Wooden Jewelry Organizer Rack"]
+      },
+      {
+        "id": "item_39",
+        "title": "Wooden Serving Bowls Set",
+        "full": "Wooden Serving Bowls Set – Handcrafted Natural Wood Bowls",
+        "cat": "Kitchen & Dining",
+        "usd": 54.3,
+        "pkr": 15200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S47890b31a97f4e2da63e86c8535aef1fp.jpg"],
+        "variants": ["Handcrafted Natural Wood Bowl Set"]
+      },
+      {
+        "id": "item_40",
+        "title": "Decorative Naqshi Wooden Plate",
+        "full": "Decorative Naqshi Wooden Plate – Wall Hanging",
+        "cat": "Decor & Accents",
+        "usd": 52.9,
+        "pkr": 14800,
+        "imgs": ["https://pk-live-21.slatic.net/kf/Sdd504155c4ec4a4dbd22a09bd66aade05.jpg"],
+        "variants": ["In Different Colors"]
+      },
+      {
+        "id": "item_41",
+        "title": "Set of 2 Premium Handcrafted Wooden Vases",
+        "full": "Set of 2 Premium Handcrafted Wooden Vases with Naqshi Artwork",
+        "cat": "Decor & Accents",
+        "usd": 56.4,
+        "pkr": 15800,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S5644f7cc18294520911952d29d46d40fs.jpg"],
+        "variants": ["in Different Colors"]
+      },
+      {
+        "id": "item_42",
+        "title": "Wooden Rehal with Storage Box",
+        "full": "Wooden Rehal with Storage Box | Naqshi Art & Simple Design",
+        "cat": "Artisan Boxes & Storage",
+        "usd": 54.3,
+        "pkr": 15200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S87cc0c3a881c40cf9ae613795246f740O.jpg"],
+        "variants": ["Simple", "Carved", "Naqshi"]
+      },
+      {
+        "id": "item_43",
+        "title": "Naqshi Wooden Wall Clock",
+        "full": "Naqshi Wooden Wall Clock | Handcrafted Decorative Clock",
+        "cat": "Decor & Accents",
+        "usd": 56.4,
+        "pkr": 15800,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S4d6f095e04534b43a44175b533ef5116f.jpg"],
+        "variants": ["18\" Hand-Carved Naqshi"]
+      },
+      {
+        "id": "item_44",
+        "title": "Wooden Octagonal Spice Box with 4 Compartments",
+        "full": "Wooden Octagonal Spice Box with 4 Compartments | Masala Dabba",
+        "cat": "Artisan Boxes & Storage",
+        "usd": 54.3,
+        "pkr": 15200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/Saeb769e553c74b6f94b264dff3ffca1dC.jpg"],
+        "variants": ["4-Compartment Glass Lid Masala Dabba"]
+      },
+      {
+        "id": "item_45",
+        "title": "Handcrafted Wooden Wall Clocks",
+        "full": "Handcrafted Wooden Wall Clocks | 6 Unique Naqshi Patterns",
+        "cat": "Decor & Accents",
+        "usd": 56.4,
+        "pkr": 15800,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S880caccbf2504ec6b85b57f9c7c3a965D.jpg"],
+        "variants": ["Pattern 1: Star Motif", "Pattern 2: Floral Arabesque", "Pattern 3: Sunburst", "Pattern 4: Geometric", "Pattern 5: Classic Naqshi", "Pattern 6: Imperial"]
+      },
+      {
+        "id": "item_46",
+        "title": "Wooden Serving Platters Set of 3",
+        "full": "Wooden Serving Platters Set of 3 | Multi-Use Food Trays",
+        "cat": "Kitchen & Dining",
+        "usd": 54.3,
+        "pkr": 15200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S72553c3983954d93b27ffb05b7b7839cu.jpg"],
+        "variants": ["Set of 3 Multi-Use Serving Trays"]
+      },
+      {
+        "id": "item_47",
+        "title": "Handcrafted Naqshi Wooden Jewelry Box",
+        "full": "Handcrafted Naqshi Wooden Jewelry Box | Storage Organizer",
+        "cat": "Artisan Boxes & Storage",
+        "usd": 54.3,
+        "pkr": 15200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/Sf4e713744547410095438df67bf009a4p.jpg"],
+        "variants": ["Handcrafted Carved Velvet Casing"]
+      },
+      {
+        "id": "item_48",
+        "title": "Carved Wooden Serving Tray Set of 3",
+        "full": "Carved Wooden Serving Tray Set of 3 with Brass Work",
+        "cat": "Kitchen & Dining",
+        "usd": 54.3,
+        "pkr": 15200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S3a60c6ed811f4f1ba1d1bd48a9d8a1e09.jpg", "https://pk-live-21.slatic.net/kf/Sa3114d59a72d42dfbc8ae1758c56faadX.jpg", "https://pk-live-21.slatic.net/kf/S04e7ebbe594e4175b9f7f457fc8d7bf9H.jpg"],
+        "variants": ["Brass Work", "Brass Work with Carving"]
+      },
+      {
+        "id": "item_49",
+        "title": "Wooden Hotpot with Steel Interior",
+        "full": "Wooden Hotpot with Steel Interior | Insulated Food Warmer",
+        "cat": "Kitchen & Dining",
+        "usd": 62.5,
+        "pkr": 17500,
+        "imgs": ["https://pk-live-21.slatic.net/kf/Sbe8a93e8dab14365a2d303d8129d4677r.jpg", "https://pk-live-21.slatic.net/kf/S718bcda1f3ec473dae4c7b80fb48c8b1P.jpg", "https://pk-live-21.slatic.net/kf/S3f46b00deb1945f790b5129041adddb3G.jpg"],
+        "variants": ["12-Inch Handcrafted Brass Hotpot"]
+      },
+      {
+        "id": "item_50",
+        "title": "Wooden Carved 3-Tier Jewelry Box",
+        "full": "Wooden Carved 3-Tier Jewelry Box | Handmade Storage Case",
+        "cat": "Artisan Boxes & Storage",
+        "usd": 56.4,
+        "pkr": 15800,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S399d009fc830478683bdc94b5016cc97d.jpg", "https://pk-live-21.slatic.net/kf/Sb453eb5a435e40e08f5d0959082855acX.jpg", "https://pk-live-21.slatic.net/kf/Sa2887a03beba43f295db21c565d75d27g.jpg"],
+        "variants": ["Handcrafted Carved Velvet Casing"]
+      },
+      {
+        "id": "item_51",
+        "title": "Modern Wooden Watch Box with Glass Lid",
+        "full": "Modern Wooden Watch Box with Glass Lid | Velvet Interior",
+        "cat": "Artisan Boxes & Storage",
+        "usd": 54.3,
+        "pkr": 15200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S09a1106a1fbb4eef9ef1f4d88f1e8d33W.jpg", "https://pk-live-21.slatic.net/kf/Saa934c44fdc944edb4b36253228072a3v.jpg", "https://pk-live-21.slatic.net/kf/S9f01e4896c3a461d8889d8624b7d05a8v.jpg"],
+        "variants": ["3-Slot Edition", "6-Slot Edition", "10-Slot Deluxe"]
+      },
+      {
+        "id": "item_52",
+        "title": "Wooden Watch Box with Premium Interior",
+        "full": "Wooden Watch Box with Premium Interior | Carved Artwork",
+        "cat": "Artisan Boxes & Storage",
+        "usd": 54.3,
+        "pkr": 15200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/Saa934c44fdc944edb4b36253228072a3v.jpg", "https://pk-live-21.slatic.net/kf/S09a1106a1fbb4eef9ef1f4d88f1e8d33W.jpg", "https://pk-live-21.slatic.net/kf/S9f01e4896c3a461d8889d8624b7d05a8v.jpg"],
+        "variants": ["Carved Artwork Design", "Naqshi Art Finish", "Simple Polished Wood"]
+      },
+      {
+        "id": "item_53",
+        "title": "Naqshi Wooden Watch Box with Glass Lid",
+        "full": "Naqshi Wooden Watch Box with Glass Lid | Handcrafted Carved Design",
+        "cat": "Artisan Boxes & Storage",
+        "usd": 54.3,
+        "pkr": 15200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S9f01e4896c3a461d8889d8624b7d05a8v.jpg", "https://pk-live-21.slatic.net/kf/Saa934c44fdc944edb4b36253228072a3v.jpg", "https://pk-live-21.slatic.net/kf/S09a1106a1fbb4eef9ef1f4d88f1e8d33W.jpg"],
+        "variants": ["3-Slot Edition", "6-Slot Edition", "10-Slot Deluxe"]
+      },
+      {
+        "id": "item_54",
+        "title": "Premium Handcrafted Wooden Jewelry Box",
+        "full": "Premium Handcrafted Wooden Jewelry Box with Naqshi Artwork",
+        "cat": "Artisan Boxes & Storage",
+        "usd": 54.3,
+        "pkr": 15200,
+        "imgs": ["https://pk-live-21.slatic.net/kf/S3ffd6915ff7b4515b4356b952ca4b0a9v.jpg", "https://pk-live-21.slatic.net/kf/Sf4e713744547410095438df67bf009a4p.jpg"],
+        "variants": ["Handcrafted Carved Velvet Casing"]
+      },
+      {
+        "id": "item_55",
+        "title": "Multipurpose Wooden Kitchen Rack",
+        "full": "Multipurpose Wooden Kitchen Rack & Microwave Stand",
+        "cat": "Tables & Furniture",
+        "usd": 71.1,
+        "pkr": 19900,
+        "imgs": ["https://pk-live-21.slatic.net/kf/Sc4ef0a7abd8441c69cd25a1e9caa192eb.jpg"],
+        "variants": ["3-Tier Utility Rack", "4-Tier Utility Rack", "5-Tier Utility Rack"]
+      },
+      {
+        "id": "item_56",
+        "title": "Wooden Pen Holder with Velvet Finish",
+        "full": "Wooden Pen Holder with Velvet Finish | Premium Desk Organizer",
+        "cat": "Decor & Accents",
+        "usd": 52.9,
+        "pkr": 14800,
+        "imgs": ["https://img.drz.lazcdn.com/g/kf/S854b5a0842c041c1914607c4a5e65f9cR.jpg"],
+        "variants": ["Standard Handcrafted Solid Wood"]
+      }
+    ];
+
+    const starProducts = [
+      {
+        name: "Live Edge Round Coffee Table",
+        headline: "Organic Edge.<br>Defined Style.",
+        desc: "Handcrafted natural-edge center table in solid cured hardwood. Designed to anchor modern lounge and studio settings with organic warmth.",
+        usd: 105.4,
+        pkr: 29500,
+        oldUsd: 125,
+        oldPkr: 35000,
+        sizes: ["Natural Cut Live Edge Slab", "Custom Solid Wood Slab"],
+        gradient: "radial-gradient(circle at 50% 45%, #4a2c1d 0%, #170d08 100%)",
+        img: "https://pk-live-21.slatic.net/kf/Se84bc99d7cd14742ad234b8d7bee3802k.jpg"
+      },
+      {
+        name: "Handcrafted Naqshi Coffee Table",
+        headline: "Heritage Art.<br>Timeless Form.",
+        desc: "Centuries-old Pakistani Naqshi lacquer art applied to a solid carved wooden center suite. A statement piece that bridges heirloom craft with contemporary luxury.",
+        usd: 117.9,
+        pkr: 33000,
+        oldUsd: 135,
+        oldPkr: 38000,
+        sizes: ["Standard Handcrafted Solid Wood"],
+        gradient: "radial-gradient(circle at 50% 45%, #2a3547 0%, #0d121c 100%)",
+        img: "https://pk-live-21.slatic.net/kf/S356e730d2ccb45f4ac447c2265c16ed1h.jpg"
+      },
+      {
+        name: "Live Edge Wooden Console Table",
+        headline: "Solid Timber.<br>Linear Elegance.",
+        desc: "Architectural entryway and hallway console highlighting the raw natural contours and distinctive live edges of hand-selected solid timber.",
+        usd: 132.1,
+        pkr: 37000,
+        oldUsd: 150,
+        oldPkr: 42000,
+        sizes: ["4ft Length Live Edge Console"],
+        gradient: "radial-gradient(circle at 50% 45%, #42362b 0%, #15110d 100%)",
+        img: "https://pk-live-21.slatic.net/kf/S918e8844fff04c0cae4de88a016396acb.jpg"
+      }
+    ];
+
+    let currentStarIndex = 0;
+    const heroStage = document.getElementById('heroStage');
+    const heroTitle = document.getElementById('heroTitle');
+    const heroDesc = document.getElementById('heroDesc');
+    const heroPrice = document.getElementById('heroPrice');
+    const heroOldPrice = document.getElementById('heroOldPrice');
+    const heroSizes = document.getElementById('heroSizes');
+    const heroImg = document.getElementById('heroImg');
+    const nextThumbImg = document.getElementById('nextThumbImg');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const nextPreview = document.getElementById('nextPreview');
+    const siteHeader = document.getElementById('siteHeader');
+
+    function formatPrice(usd, pkr) {
+      if (currentCurrency === 'USD') {
+        return `$${usd}`;
+      }
+      return `Rs. ${pkr.toLocaleString()}`;
+    }
+
+    function getCalculatedPriceString(usd, pkr) {
+      if (currentCurrency === 'USD') {
+        return `$${usd} USD`;
+      }
+      return `Rs. ${pkr.toLocaleString()} PKR`;
+    }
+
+    function setCurrency(curr) {
+      currentCurrency = curr;
+      document.getElementById('currUsd').classList.toggle('active', curr === 'USD');
+      document.getElementById('currPkr').classList.toggle('active', curr === 'PKR');
+      updateHero(currentStarIndex);
+      renderProducts();
+    }
+
+    function updateHero(index) {
+      const p = starProducts[index];
+      const nextP = starProducts[(index + 1) % starProducts.length];
+
+      heroStage.style.background = p.gradient;
+      heroImg.style.opacity = '0';
+      heroImg.style.transform = 'translateY(12px) scale(0.96)';
+
+      setTimeout(() => {
+        heroTitle.innerHTML = p.headline;
+        heroDesc.innerText = p.desc;
+        heroPrice.innerText = formatPrice(p.usd, p.pkr);
+        heroOldPrice.innerText = formatPrice(p.oldUsd, p.oldPkr);
+        heroImg.src = p.img;
+        nextThumbImg.src = nextP.img;
+
+        heroSizes.innerHTML = '';
+        p.sizes.forEach((s, idx) => {
+          const pill = document.createElement('div');
+          pill.className = `size-pill ${idx === 0 ? 'active' : ''}`;
+          pill.innerText = s;
+          pill.addEventListener('click', () => {
+            document.querySelectorAll('.size-pill').forEach(el => el.classList.remove('active'));
+            pill.classList.add('active');
+          });
+          heroSizes.appendChild(pill);
+        });
+
+        heroImg.style.opacity = '1';
+        heroImg.style.transform = 'translateY(0px) scale(1)';
+      }, 250);
+    }
+
+    prevBtn.addEventListener('click', () => {
+      currentStarIndex = (currentStarIndex - 1 + starProducts.length) % starProducts.length;
+      updateHero(currentStarIndex);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentStarIndex = (currentStarIndex + 1) % starProducts.length;
+      updateHero(currentStarIndex);
+    });
+
+    nextPreview.addEventListener('click', () => {
+      currentStarIndex = (currentStarIndex + 1) % starProducts.length;
+      updateHero(currentStarIndex);
+    });
+
+    updateHero(0);
+
+    window.addEventListener('scroll', () => {
+      siteHeader.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    const grid = document.getElementById('productsGrid');
+    const searchInput = document.getElementById('searchInput');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sectionTitle = document.getElementById('sectionTitle');
+    const sectionSubtitle = document.getElementById('sectionSubtitle');
+
+    let activeCategory = 'all';
+    let searchQuery = '';
+
+    const categoryMeta = {
+      'all': {
+        title: 'All Masterpieces',
+        subtitle: 'Showing complete collection of handcrafted wooden essentials with in-card gallery slider'
+      },
+      'Tables & Furniture': {
+        title: 'Tables & Solid Wood Furniture',
+        subtitle: 'Live-edge center tables, round coffee tables, console tables, workstations, and utility stools'
+      },
+      'Artisan Boxes & Storage': {
+        title: 'Artisan Keepsake & Storage Boxes',
+        subtitle: 'Hand-carved Naqshi jewelry chests, velvet-lined watch boxes, and brass spice containers'
+      },
+      'Dining & Decor': {
+        title: 'Dining, Kitchen & Wall Decor',
+        subtitle: 'Solid wood tableware, hotpots, serving platters, clocks, and artistic home accents'
+      },
+      'Kitchen & Dining': {
+        title: 'Kitchen & Dining Collection',
+        subtitle: 'Serving bowls, organizers, wooden hotpots, and dining table centerpieces'
+      },
+      'Decor & Accents': {
+        title: 'Artisan Accents & Wall Decor',
+        subtitle: 'Naqshi clocks, lamps, phone stands, and handcrafted folk heritage ornaments'
+      }
+    };
+
+    function navigateToHome() {
+      navLinks.forEach(link => link.classList.remove('active'));
+      const homeLink = document.querySelector('.nav-link[data-target="home"]');
+      if (homeLink) homeLink.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function navigateToCategory(cat, stayTop = false) {
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.target === cat);
+      });
+      filterBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.cat === cat);
+      });
+      activeCategory = cat;
+
+      if (categoryMeta[cat]) {
+        sectionTitle.innerText = categoryMeta[cat].title;
+        sectionSubtitle.innerText = categoryMeta[cat].subtitle;
+      }
+
+      renderProducts();
+
+      if (!stayTop) {
+        const catalogEl = document.getElementById('catalogSection');
+        const offsetPosition = catalogEl.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      }
+    }
+
+    function filterCatalog(cat) {
+      let navTarget = cat;
+      if (cat === 'Kitchen & Dining' || cat === 'Decor & Accents') {
+        navTarget = 'Dining & Decor';
+      }
+      navLinks.forEach(link => link.classList.toggle('active', link.dataset.target === navTarget));
+      filterBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.cat === cat));
+
+      activeCategory = cat;
+      if (categoryMeta[cat]) {
+        sectionTitle.innerText = categoryMeta[cat].title;
+        sectionSubtitle.innerText = categoryMeta[cat].subtitle;
+      }
+      renderProducts();
+    }
+
+    function renderProducts() {
+      grid.innerHTML = '';
+      document.getElementById('totalItemsCount').innerText = catalog.length;
+
+      const filtered = catalog.filter(item => {
+        let matchesCat = false;
+        if (activeCategory === 'all') {
+          matchesCat = true;
+        } else if (activeCategory === 'Dining & Decor') {
+          matchesCat = item.cat === 'Kitchen & Dining' || item.cat === 'Decor & Accents';
+        } else {
+          matchesCat = item.cat === activeCategory;
+        }
+
+        const matchesQuery = item.full.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                             item.title.toLowerCase().includes(searchQuery.toLowerCase());
+
+        return matchesCat && matchesQuery;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 70px 0; color: #94a3b8; font-size: 15px;">No matching pieces found.</div>`;
+        return;
+      }
+
+      filtered.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'item-card';
+
+        const slidesHtml = p.imgs.map(img => `
+          <div class="carousel-slide">
+            <img src="${img}" alt="${p.title}" loading="lazy" />
+          </div>
+        `).join('');
+
+        const dotsHtml = p.imgs.map((_, i) => `
+          <div class="carousel-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></div>
+        `).join('');
+
+        const variantsHtml = p.variants.map(v => `
+          <span class="variant-chip">${v}</span>
+        `).join('');
+
+        const priceText = formatPrice(p.usd, p.pkr);
+        const priceString = getCalculatedPriceString(p.usd, p.pkr);
+        const defaultVariant = p.variants[0] || 'Standard';
+        
+        const whatsappMsg = `Hello Craftly Goods, I would like to place an order for:\n\n*Product:* ${p.title}\n*Variant:* ${defaultVariant}\n*Price:* ${priceString}\n\nPlease guide me with the checkout process.`;
+        const cardWaLink = `https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(whatsappMsg)}`;
+
+        card.innerHTML = `
+          <div class="item-carousel">
+            <div class="photo-count-badge">📷 ${p.imgs.length} Photos</div>
+            ${p.imgs.length > 1 ? `<button class="card-arrow prev" title="Previous Image">&#10094;</button>` : ''}
+            <div class="carousel-track">
+              ${slidesHtml}
+            </div>
+            ${p.imgs.length > 1 ? `<button class="card-arrow next" title="Next Image">&#10095;</button>` : ''}
+            ${p.imgs.length > 1 ? `<div class="carousel-dots">${dotsHtml}</div>` : ''}
+          </div>
+          <div class="item-card-body">
+            <div class="item-top-row">
+              <span class="item-category">${p.cat}</span>
+              <span class="item-price-tag">${priceText}</span>
+            </div>
+            <div class="item-title">${p.title}</div>
+            <div class="variant-chips-wrap">
+              ${variantsHtml}
+            </div>
+            <div class="item-action-row">
+              <div class="item-action view-action-btn">
+                <span>View Specs</span> &rarr;
+              </div>
+              <a href="${cardWaLink}" target="_blank" class="card-whatsapp-btn" onclick="event.stopPropagation()">
+                <span>💬</span> <span>Buy Now</span>
+              </a>
+            </div>
+          </div>
+        `;
+
+        let currentSlide = 0;
+        const track = card.querySelector('.carousel-track');
+        const prevArrow = card.querySelector('.card-arrow.prev');
+        const nextArrow = card.querySelector('.card-arrow.next');
+        const dots = card.querySelectorAll('.carousel-dot');
+
+        function goToSlide(index) {
+          currentSlide = (index + p.imgs.length) % p.imgs.length;
+          track.style.transform = `translateX(-${currentSlide * 100}%)`;
+          dots.forEach((dot, idx) => dot.classList.toggle('active', idx === currentSlide));
+        }
+
+        if (prevArrow && nextArrow) {
+          prevArrow.addEventListener('click', (e) => {
+            e.stopPropagation();
+            goToSlide(currentSlide - 1);
+          });
+          nextArrow.addEventListener('click', (e) => {
+            e.stopPropagation();
+            goToSlide(currentSlide + 1);
+          });
+          dots.forEach((dot, idx) => {
+            dot.addEventListener('click', (e) => {
+              e.stopPropagation();
+              goToSlide(idx);
+            });
+          });
+        }
+
+        card.querySelector('.view-action-btn').addEventListener('click', () => openModal(p));
+        card.querySelector('.item-title').addEventListener('click', () => openModal(p));
+        grid.appendChild(card);
+      });
+    }
+
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      renderProducts();
+    });
+
+    const modal = document.getElementById('productModal');
+    const modalClose = document.getElementById('modalClose');
+    const modalMainImg = document.getElementById('modalMainImg');
+    const modalThumbsRow = document.getElementById('modalThumbsRow');
+    const modalCategory = document.getElementById('modalCategory');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalPrice = document.getElementById('modalPrice');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalVariants = document.getElementById('modalVariants');
+    const whatsappBuyBtn = document.getElementById('whatsappBuyBtn');
+
+    function openModal(item) {
+      modalCategory.innerText = item.cat;
+      modalTitle.innerText = item.title;
+      
+      const currentPriceFormatted = formatPrice(item.usd, item.pkr);
+      modalPrice.innerText = currentPriceFormatted;
+      modalDesc.innerText = item.full;
+
+      const getSelectedVariant = () => {
+        const activePill = modalVariants.querySelector('.modal-v-pill.active');
+        return activePill ? activePill.innerText : (item.variants[0] || 'Standard');
+      };
+
+      const updateWhatsAppLink = () => {
+        const selectedVar = getSelectedVariant();
+        const priceString = getCalculatedPriceString(item.usd, item.pkr);
+        const message = `Hello Craftly Goods, I would like to place an order for:\n\n*Product:* ${item.title}\n*Variant:* ${selectedVar}\n*Price:* ${priceString}\n\nPlease guide me with the checkout process.`;
+        whatsappBuyBtn.href = `https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
+      };
+
+      updateWhatsAppLink();
+
+      modalMainImg.src = item.imgs[0];
+      modalThumbsRow.innerHTML = '';
+      
+      item.imgs.forEach((imgUrl, idx) => {
+        const thumb = document.createElement('div');
+        thumb.className = `modal-thumb ${idx === 0 ? 'active' : ''}`;
+        thumb.innerHTML = `<img src="${imgUrl}" alt="Thumb" />`;
+        thumb.addEventListener('click', () => {
+          document.querySelectorAll('.modal-thumb').forEach(t => t.classList.remove('active'));
+          thumb.classList.add('active');
+          modalMainImg.style.opacity = '0.3';
+          setTimeout(() => {
+            modalMainImg.src = imgUrl;
+            modalMainImg.style.opacity = '1';
+          }, 150);
+        });
+        modalThumbsRow.appendChild(thumb);
+      });
+
+      modalVariants.innerHTML = '';
+      item.variants.forEach((v, idx) => {
+        const vBtn = document.createElement('button');
+        vBtn.className = `modal-v-pill ${idx === 0 ? 'active' : ''}`;
+        vBtn.innerText = v;
+        vBtn.addEventListener('click', () => {
+          document.querySelectorAll('.modal-v-pill').forEach(b => b.classList.remove('active'));
+          vBtn.classList.add('active');
+          updateWhatsAppLink();
+        });
+        modalVariants.appendChild(vBtn);
+      });
+
+      modal.classList.add('open');
+    }
+
+    modalClose.addEventListener('click', () => modal.classList.remove('open'));
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('open');
+    });
+
+    renderProducts();
+  </script>
+</body>
+</html>
